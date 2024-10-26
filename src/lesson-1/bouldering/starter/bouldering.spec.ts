@@ -1,0 +1,4 @@
+
+describe('bouldering score calculator', () => {
+  
+});
