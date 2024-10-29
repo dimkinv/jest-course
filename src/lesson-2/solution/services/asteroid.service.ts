@@ -10,7 +10,8 @@ export class AsteroidService {
             return mapNASAResponseToAppResponse(response.data);
 
         } catch (ex) {
-            console.log(ex.message);
+            const e  = ex as Error;
+            console.log(e.message);
             throw ex;
         }
     }

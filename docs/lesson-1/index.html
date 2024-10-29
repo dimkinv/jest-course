@@ -252,6 +252,29 @@ describe('test unit', () => {
 				</code></pre>
 			</section>
 			<section>
+				<h3>Jest Aliases and Test Modifiers</h3>
+				<ul>
+					<li><code>test</code> and <code>it</code> - Define a test case</li>
+					<li><code>test.skip</code> and <code>it.skip</code> - Skip a test case</li>
+					<li><code>test.only</code> and <code>it.only</code> - Run only this test case</li>
+					<li><code>test.todo</code> - Define a test case that is yet to be implemented</li>
+				</ul>
+				<pre><code class="language-javascript" data-trim data-noescape>	
+					// Skipping a test
+					test.skip('this test is skipped', () => {
+						expect(true).toBe(false);
+					});
+			
+					// Running only this test
+					test.only('this test will run', () => {
+						expect(true).toBe(true);
+					});
+			
+					// Defining a todo test
+					test.todo('this test is yet to be implemented');
+				</code></pre>
+			</section>
+			<section>
 				<h4>Given, When, Then</h4>
 				<small>Explicit is better than implicit.</small>
 				<br>

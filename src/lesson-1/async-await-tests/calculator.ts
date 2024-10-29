@@ -1,23 +1,21 @@
 export class Calculator{
-    plus(a: number, b: number, callback: CallbackFn){
-        callback(null, a + b);
+    async plus(a: number, b: number){
+        return a + b;
     }
 
-    minus(a: number, b: number, callback: CallbackFn){
-        callback(null, a - b);
+    async minus(a: number, b: number){
+        return a - b;
     }
 
-    divide(a: number, b: number, callback: CallbackFn){
+    async divide(a: number, b: number){
         if(b === 0){
-            return callback(new Error('cannot divide by 0'), null);
+            throw new Error('cannot divide by 0');
         }
 
-        callback(null, a / b);
+        return a / b;
     }
 
-    mulitply(a: number, b: number, callback: CallbackFn){
-        callback(null, a * b);
+    async mulitply(a: number, b: number){
+        return a * b;
     }
 }
-
-type CallbackFn = (err: Error | null, response:number | null)=> void;
