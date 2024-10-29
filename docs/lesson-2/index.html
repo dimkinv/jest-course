@@ -89,37 +89,58 @@ expect(mockFunction.mock.results[0].value).toBe(2);
 				</code></pre>
 			</section>
 			<section>
-				<h5>Custom mathers</h5>
-				<p>Syntax sugar</p>
-				<pre class="language-javascript"><code>
-// The mock function was called at least once
-expect(mockFunction).toHaveBeenCalled();
+				<h5>Mock Function Object</h5>
+				<p>When using a mock function, Jest provides useful properties and methods:</p>
+				<pre class="language-javascript"><code>// Example
+const mockFunction = jest.fn(x => x + 1);
+mockFunction(2);
+mockFunction(3);
 
-// The mock function was called at least once with the specified args
-expect(mockFunction).toHaveBeenCalledWith(arg1, arg2);
+// Accessing calls and results
+console.log(mockFunction.mock.calls); // [[2], [3]]
+console.log(mockFunction.mock.results); // [{ type: 'return', value: 3 }, { type: 'return', value: 4 }]
 
-// The last call to the mock function was called with the specified args
-expect(mockFunction).toHaveBeenLastCalledWith(arg1, arg2);
-
-// All calls and the name of the mock is written as a snapshot
-expect(mockFunction).toMatchSnapshot();
+// Resetting mock state
+mockFunction.mockReset();
 				</code></pre>
 			</section>
 			<section>
-				<h5>Mock return values</h5>
-				<p>Program to return specific values from mock instance</p>
-				<pre class="language-javascript"><code>
-myMock
-.mockReturnValueOnce(10)
-.mockReturnValueOnce('x')
-.mockReturnValue(true);
+				<h5>Mock Return Values</h5>
+				<p>Mock functions can also return specific values or resolve/reject promises:</p>
+				<pre><code class="language-javascript" data-trim data-noescape>
+			// Returning values
+			const mockFunction = jest.fn()
+			  .mockReturnValueOnce(10) // Returns 10 on first call
+			  .mockReturnValueOnce('x') // Returns 'x' on second call
+			  .mockReturnValue(true);   // Returns true for subsequent calls
+			
+			// Resolving and rejecting promises
+			const mockAsyncFunction = jest.fn()
+			  .mockResolvedValueOnce('data') // Resolves with 'data'
+			  .mockRejectedValueOnce('error'); // Rejects with 'error'
 				</code></pre>
-				<ul style="list-style: none;">
-					<li>.mockReturnValue </li>
-					<li>.mockResolvedValue</li>
-					<li>.mockRejectedValue</li>
-					<li>.mockReset</li>
-				</ul>
+			</section>
+			<section>
+				<h5>Mocking Modules with jest.mock()</h5>
+				<p>Jest allows you to mock entire modules for isolated testing:</p>
+				<pre><code class="language-javascript" data-trim data-noescape>
+			// Mocking a module
+			import axios from 'axios';
+			jest.mock('axios');
+			
+			// Mocking a specific function in the module
+			test('fetches data from API', () => {
+			  const response = { data: 'mockData' };
+			  axios.get.mockResolvedValue(response);
+			
+			  // Invoke the API call
+			  axios.get('/some-endpoint');
+			
+			  // Assert the mocked call
+			  expect(axios.get).toHaveBeenCalledWith('/some-endpoint');
+			  expect(axios.get).toHaveBeenCalledTimes(1);
+			});
+				</code></pre>
 			</section>
 			<section>
 				<h5>Mocking modules</h5>
@@ -191,7 +212,7 @@ jest &ltfilename&gt # execute tests only on specific file
 			</section>
 			<section>
 				<h5>Exercise</h5>
-				<img src="../../assets/meteor.jpeg"/>
+				<img src="../assets/meteor.jpeg"/>
 			</section>
 			<section>
 				<h5>☄️ lets look up ☄️</h5>
