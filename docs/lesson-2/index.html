@@ -68,15 +68,15 @@
 				<h2>UnitTests with Jest - Advanced</h2>
 			</section>
 			<section>
-				<h3>Mocks</h3>
+				<h4>Mocks</h4>
 				<div style="display:flex;justify-content: center">
 					Mock functions allow you to test a module in isolation by erasing the actual implementation of a
 					functions from another module
 			</section>
 			<section>
-				<h5>Mocks in jest</h5>
-				<p>It all starts with <code>jest.fn()</code></p>
-				<pre class="language-javascript"><code>
+				<h4>Mocks in jest</h4>
+				<p>It all starts with <code data-trim data-noescape>jest.fn()</code></p>
+				<pre class="language-javascript"><code data-trim data-noescape>
 // given
 const mockFunction = jest.fn(x => x * 2);
 // when
@@ -89,9 +89,9 @@ expect(mockFunction.mock.results[0].value).toBe(2);
 				</code></pre>
 			</section>
 			<section>
-				<h5>Mock Function Object</h5>
+				<h4>Mock Function Object</h4>
 				<p>When using a mock function, Jest provides useful properties and methods:</p>
-				<pre class="language-javascript"><code>// Example
+				<pre class="language-javascript"><code data-trim data-noescape>// Example
 const mockFunction = jest.fn(x => x + 1);
 mockFunction(2);
 mockFunction(3);
@@ -144,7 +144,7 @@ mockFunction.mockReset();
 			</section> -->
 			<section>
 				<h5>Mocking modules</h5>
-				<pre class="language-javascript"><code>
+				<pre class="language-javascript"><code data-trim data-noescape>
 import axios from 'axios';
 jest.mock('axios');
 
@@ -160,13 +160,13 @@ test('should fetch users', () => {
 				</code></pre>
 				<div style="border: 1px solid red; position: relative;">
 					<div style="position: absolute; font-size: 12px;left:10px; top:10px;font-weight: bold;">NOTE</div>
-					<code>.toEqual</code> vs
-					<code>.toBe</code>
+					<code data-trim data-noescape>.toEqual</code> vs
+					<code data-trim data-noescape>.toBe</code>
 				</div>
 			</section>
 			<section>
 				<h5>Mocking implementation from module</h5>
-				<pre class="language-javascript"><code>
+				<pre class="language-javascript"><code data-trim data-noescape>
 // foo.ts
 export default function () {
 	// some implementation;
@@ -183,7 +183,7 @@ foo();
 			</section>
 			<section>
 				<h5>Spies 🕵️</h5>
-				<pre class="language-javascript"><code>
+				<pre class="language-javascript"><code data-trim data-noescape>
 import * as app from "./app";
 import * as math from "./math";
 
@@ -199,10 +199,76 @@ test("calls math.add", () => {
 				</code></pre>
 				Mocks the function but leaves the implementation
 			</section>
-			
+			<section>
+				<h5>Snapshot Testing 📸</h5>
+				<p>Snapshot testing is a way to ensure that your objects do not change unexpectedly.</p>
+				<pre class="language-javascript"><code data-trim data-noescape>
+// Import necessary modules
+const user = {
+  name: 'John Doe',
+  age: 30,
+  job: 'Developer'
+};
+
+test('snapshot of user object', () => {
+  expect(user).toMatchSnapshot();
+});
+				</code></pre>
+				<p>Snapshots are stored in separate files</p>
+			</section>
+			<section>
+				<h5>Mocking Timers ⏲️</h5>
+				<pre class="language-typescript"><code  data-trim data-noescape>
+jest.useFakeTimers();
+
+test('testing timer with setTimeout', () => {
+  const callback = jest.fn();
+
+  setTimeout(callback, 1000);
+
+  // Fast-forward time
+  jest.advanceTimersByTime(1000);
+  // or
+  jest.runAllTimers();
+  // Verify the callback was called
+  expect(callback).toHaveBeenCalled();
+});
+				</code></pre>
+			</section>
+			<section>
+				<h5>Parameterized Tests with <code data-trim data-noescape>test.each()</code> 📋</h5>
+				<p>Jest allows you to run the same test with multiple sets of data using <code data-trim data-noescape>test.each()</code>.</p>
+				<pre class="language-javascript"><code data-trim data-noescape>
+test.each([
+  [1, 1, 2],
+  [1, 2, 3],
+  [2, 1, 3],
+])('adds %i + %i to equal %i', (a, b, expected) => {
+  expect(a + b).toBe(expected);
+});
+				</code></pre>
+			</section>
+			<section>
+				<h5>Argument Matchers - <code data-trim data-noescape>expect.any()</code> 🔍</h5>
+				<pre class="language-javascript"><code data-trim data-noescape>
+					const mockFunction = jest.fn();
+
+					mockFunction('Hello', 42);
+
+					// Using expect.any() to match any value of a specific type
+					expect(mockFunction)
+					.toHaveBeenCalledWith(expect.any(String), expect.any(Number));
+				</code></pre>
+				<ul>
+					<li><code data-trim data-noescape>expect.any()</code></li>
+					<li><code data-trim data-noescape>expect.stringContaining(substring)</code></li>
+					<li><code data-trim data-noescape>expect.objectContaining(object)</code></li>
+					<li><code data-trim data-noescape>expect.arrayContaining(array)</code></li>
+				</ul>
+			</section>
 			<section>
 			<h5>jest cli 🚀</h5>
-			<pre class="language-bash"><code>
+			<pre class="language-bash"><code data-trim data-noescape>
 jest --watch # watch all files since last git change (requires git repo initialized on root path)
 jest --watchAll # watch all files for changes
 jest --init # init new jest.config.js file (interactive)

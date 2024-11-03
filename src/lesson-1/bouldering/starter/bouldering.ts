@@ -1,9 +1,9 @@
 export interface CompetitorScore {
     competitorName: string;
-    tops: number;
-    zones: number;
-    zoneAttempts: number;
-    boulderAttemps: number;
+    zoneAttempts: number; // 6
+    zone: boolean; // true
+    totalAttemps: number; // 10
+    top: boolean; // false
 }
 
 export class BoulderingCalculator {
