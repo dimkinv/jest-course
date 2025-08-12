@@ -407,7 +407,10 @@ describe('simple calculator', () => {
 					});
 				</code></pre>
 			</section>
-			
+			<section>
+				<h4>Exercise</h4>
+				<p>First tests</p>
+			</section>
 			<section>
 				<h4>Array and Iterable Matchers</h4>
 				<pre><code class="language-javascript" data-trim data-noescape>
@@ -474,7 +477,11 @@ it('should read data from file ', (done)=>{
 					});
 				});
 				</code></pre>
-			</section>			
+			</section>		
+			<section>
+				<h4>Exercise</h4>
+				<p>callback tests</p>
+			</section>	
 			<section>
 				<h4>Asynchronous tests (async/await)</h4>
 				<pre><code class="language-javascript">
@@ -499,11 +506,15 @@ it('should test for error', async ()=>{
   
   // when
   // then
-  await expect(unit.functionUnderTest.bind(unit, 'param')).rejects.toThrow();
-  await expect(unit.functionUnderTest.bind(unit, 'param')).rejects.toThrowError();
-  await expect(unit.functionUnderTest.bind(unit, 'param')).rejects.toThrow('error message');
+  await expect(unit.functionUnderTest(unit, 'param')).rejects.toThrow();
+  await expect(unit.functionUnderTest(unit, 'param')).rejects.toThrowError();
+  await expect(unit.functionUnderTest(unit, 'param')).rejects.toThrow('error message');
 });
 				</code></pre>
+			</section>
+			<section>
+				<h4>Exercise</h4>
+				<p>Async/Await tests</p>
 			</section>
 			<section>
 				<h4>Code kata (bouldering) 🥋</h4>
