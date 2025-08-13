@@ -3,6 +3,7 @@ export interface NASAResponse {
         next: string;
         self: string;
     };
+    element_count: number;
     page?: {
         size: number;
         total_elements: number;

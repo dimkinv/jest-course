@@ -1,6 +1,6 @@
 
-import express from 'express';
-import { AsteroidService } from './services/asteroid.service';
+
+import { generateNasaMockData } from '../starter/generateNasaMockData';
 
 const app = express()
 const port = 3000
@@ -19,6 +19,16 @@ app.get('/asteroids', async (req, res) => {
 
   
 })
+
+
+app.get('/nasa/mock', (req, res) => {
+  const { startDate, endDate } = req.query;
+  if (!startDate || !endDate) {
+    return res.status(400).json({ error: 'startDate and endDate are required' });
+  }
+  const data = generateNasaMockData(startDate as string, endDate as string);
+  res.json(data);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
