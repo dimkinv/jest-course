@@ -1,6 +1,8 @@
 
 
+import express from 'express';
 import { generateNasaMockData } from '../starter/generateNasaMockData';
+import { AsteroidService } from './services/asteroid.service';
 
 const app = express()
 const port = 3000
