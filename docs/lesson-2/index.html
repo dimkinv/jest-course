@@ -76,18 +76,18 @@
 				<img src="../assets/real1.jpg" />
 			</section>
 			<section>
-				<h4>real of fake</h4>
+				<h4>Real or Fake?</h4>
 				<img height="500" src="../assets/real2.jpg" />
 			</section>
 			<section>
-				<h4>real of fake</h4>
+				<h4>Real or Fake?</h4>
 				<img height="500" src="../assets/fake2.jpg" />
 			</section>
 			<section>
 				<h4>Mocks</h4>
 				<div style="display:flex;justify-content: center">
 					Mock functions allow you to test a module in isolation by erasing the actual implementation of a
-					functions from another module
+					function from another module
 			</section>
 			<section>
 				<h4>Mocks in jest</h4>
@@ -159,7 +159,7 @@ mockFunction.mockReset();
 				</code></pre>
 			</section> -->
 			<section>
-				<h5>Mocking modules</h5>
+				<h5>Mocking Modules</h5>
 				<pre class="language-javascript"><code data-trim data-noescape>
 import axios from 'axios';
 jest.mock('axios');
@@ -198,7 +198,7 @@ export default function () {
 };
 
 // test.ts
-jest.mock('../foo'); 
+jest.mock('./foo'); 
 import foo from './foo'; // potential linter error
 
 // foo is a mock function
@@ -222,7 +222,7 @@ test("calls math.add", () => {
   expect(addMock).toHaveBeenCalledWith(1, 2);
 });
 				</code></pre>
-				Mocks the function but leaves the implementation
+				Wraps the function to track calls, but leaves the original implementation intact
 			</section>
 			<section>
 				<h5>Snapshot Testing 📸</h5>
@@ -292,12 +292,12 @@ test.each([
 				</ul>
 			</section>
 			<section>
-			<h5>jest cli 🚀</h5>
+			<h5>Jest CLI 🚀</h5>
 			<pre class="language-bash"><code data-trim data-noescape>
 jest --watch # watch all files since last git change (requires git repo initialized on root path)
 jest --watchAll # watch all files for changes
 jest --init # init new jest.config.js file (interactive)
-jest --verbose # log every test result individualy
+jest --verbose # log every test result individually
 jest &ltfilename&gt # execute tests only on specific file
 jest -t &ltpattern&gt # run tests matching the pattern
 			</code></pre>
@@ -311,7 +311,7 @@ jest -t &ltpattern&gt # run tests matching the pattern
 				<ul>
 					<li>start the application with <code style="color:lightgreen">npm start</code> command</li>
 					<li>goto: <a href="http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11">http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11</a></li>
-					<li>observe if earth in not in immediate danger 😱</li>
+					<li>observe if earth is not in immediate danger 😱</li>
 					<li>write unit tests for <code style="color:lightgreen">asteroid.service.ts</code> file (add spy for console.log function)</li>
 					<li>write unit tests for <code style="color:lightgreen">mapping.service.ts</code> </li>
 					<li>BONUS: write unit tests for <code style="color:lightgreen">controller.ts</code></li>
