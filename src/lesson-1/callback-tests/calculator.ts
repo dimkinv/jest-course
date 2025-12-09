@@ -15,7 +15,7 @@ export class Calculator{
         callback(null, a / b);
     }
 
-    mulitply(a: number, b: number, callback: CallbackFn){
+    multiply(a: number, b: number, callback: CallbackFn){
         callback(null, a * b);
     }
 }

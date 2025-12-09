@@ -4,14 +4,14 @@ export class Calculator{
     }
 
     minus(a: number, b: number){
-        return a + b;
+        return a - b;
     }
 
     divide(a: number, b: number){
         return a / b;
     }
 
-    mulitply(a: number, b: number){
+    multiply(a: number, b: number){
         return a * b;
     }
 }

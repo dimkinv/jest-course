@@ -15,7 +15,7 @@ export class Calculator{
         return a / b;
     }
 
-    async mulitply(a: number, b: number){
+    async multiply(a: number, b: number){
         return a * b;
     }
 }
