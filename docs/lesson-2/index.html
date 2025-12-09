@@ -136,6 +136,17 @@ mockFunction.mockReset();
 			  .mockRejectedValueOnce('error'); // Rejects with 'error'
 				</code></pre>
 			</section>
+			<section>
+				<h5>Exercise</h5>
+			</section>
+			<section>
+				<h5>Simple Mocks</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/simple-mocks/order-reader.spec.ts</code></li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">OrderReader</code> with a mocked <code
+							style="color:lightgreen">FileManager</code></li>
+				</ul>
+			</section>
 			<!-- <section>
 				<h5>Mocking Modules with jest.mock()</h5>
 				<p>Jest allows you to mock entire modules for isolated testing:</p>
@@ -181,6 +192,18 @@ test('should fetch users', () => {
 				</div>
 			</section>
 			<section>
+				<h5>Exercise</h5>
+			</section>
+			<section>
+				<h5>Mocking Modules</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/mocking-modules/file-manager.spec.ts</code>
+					</li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">FileManager</code> by mocking <code
+							style="color:lightgreen">fs/promises</code></li>
+				</ul>
+			</section>
+			<section>
 				<h5>Manual Mocks</h5>
 				<p>Create a <code>__mocks__</code> folder adjacent to the module.</p>
 				<pre class="language-javascript"><code data-trim data-noescape>
@@ -223,6 +246,17 @@ test("calls math.add", () => {
 });
 				</code></pre>
 				Wraps the function to track calls, but leaves the original implementation intact
+			</section>
+			<section>
+				<h5>Exercise</h5>
+			</section>
+			<section>
+				<h5>Spies</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/spies/calculator.spec.ts</code></li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">Calculator</code> using spies on <code
+							style="color:lightgreen">console.log</code></li>
+				</ul>
 			</section>
 			<section>
 				<h5>Clearing Mocks 🧹</h5>
@@ -282,6 +316,18 @@ test('testing timer with setTimeout', () => {
   expect(callback).toHaveBeenCalled();
 });
 				</code></pre>
+			</section>
+			<section>
+				<h5>Exercise</h5>
+				<img src="../assets/meteor.jpeg" />
+			</section>
+			<section>
+				<h5>Mocking Timers</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/timers/timer-task.spec.ts</code></li>
+					<li>Write a test for <code style="color:lightgreen">executeTaskAfterDelay</code> using fake timers
+					</li>
+				</ul>
 			</section>
 			<section>
 				<h5>Parameterized Tests with <code data-trim data-noescape>test.each()</code> 📋</h5>
