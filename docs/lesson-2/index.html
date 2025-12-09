@@ -225,6 +225,29 @@ test("calls math.add", () => {
 				Wraps the function to track calls, but leaves the original implementation intact
 			</section>
 			<section>
+				<h5>Clearing Mocks 🧹</h5>
+				<p>It's important to reset mock state between tests.</p>
+				<table style="font-size: 0.6em">
+					<tr>
+						<td><code style="color: yellow">mockFn.mockClear()</code></td>
+						<td>Clears stored info (calls, instances).</td>
+					</tr>
+					<tr>
+						<td><code style="color: orange">mockFn.mockReset()</code></td>
+						<td>Clears stored info AND implementation/return values.</td>
+					</tr>
+					<tr>
+						<td><code style="color: red">mockFn.mockRestore()</code></td>
+						<td>Restores original implementation (only for spies created with <code>spyOn</code>).</td>
+					</tr>
+				</table>
+				<pre class="language-javascript"><code data-trim data-noescape>
+afterEach(() => {
+  jest.clearAllMocks();
+});
+				</code></pre>
+			</section>
+			<section>
 				<h5>Snapshot Testing 📸</h5>
 				<p>Snapshot testing is a way to ensure that your objects do not change unexpectedly.</p>
 				<pre class="language-javascript"><code data-trim data-noescape>
@@ -262,7 +285,8 @@ test('testing timer with setTimeout', () => {
 			</section>
 			<section>
 				<h5>Parameterized Tests with <code data-trim data-noescape>test.each()</code> 📋</h5>
-				<p>Jest allows you to run the same test with multiple sets of data using <code data-trim data-noescape>test.each()</code>.</p>
+				<p>Jest allows you to run the same test with multiple sets of data using <code data-trim
+						data-noescape>test.each()</code>.</p>
 				<pre class="language-javascript"><code data-trim data-noescape>
 test.each([
   [1, 1, 2],
@@ -292,8 +316,34 @@ test.each([
 				</ul>
 			</section>
 			<section>
-			<h5>Jest CLI 🚀</h5>
-			<pre class="language-bash"><code data-trim data-noescape>
+				<h5>Custom Matchers 🛠️</h5>
+				<p>Extend Jest with your own assertions.</p>
+				<pre class="language-javascript"><code data-trim data-noescape>
+expect.extend({
+  toBeWithinRange(received, floor, ceiling) {
+    const pass = received >= floor && received <= ceiling;
+    if (pass) {
+      return {
+        message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+        pass: true,
+      };
+    } else {
+      return {
+        message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
+        pass: false,
+      };
+    }
+  },
+});
+
+test('numeric ranges', () => {
+  expect(100).toBeWithinRange(90, 110);
+});
+				</code></pre>
+			</section>
+			<section>
+				<h5>Jest CLI 🚀</h5>
+				<pre class="language-bash"><code data-trim data-noescape>
 jest --watch # watch all files since last git change (requires git repo initialized on root path)
 jest --watchAll # watch all files for changes
 jest --init # init new jest.config.js file (interactive)
@@ -304,15 +354,18 @@ jest -t &ltpattern&gt # run tests matching the pattern
 			</section>
 			<section>
 				<h5>Exercise</h5>
-				<img src="../assets/meteor.jpeg"/>
+				<img src="../assets/meteor.jpeg" />
 			</section>
 			<section>
 				<h5>☄️ lets look up ☄️</h5>
 				<ul>
 					<li>start the application with <code style="color:lightgreen">npm start</code> command</li>
-					<li>goto: <a href="http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11">http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11</a></li>
+					<li>goto: <a
+							href="http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11">http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11</a>
+					</li>
 					<li>observe if earth is not in immediate danger 😱</li>
-					<li>write unit tests for <code style="color:lightgreen">asteroid.service.ts</code> file (add spy for console.log function)</li>
+					<li>write unit tests for <code style="color:lightgreen">asteroid.service.ts</code> file (add spy for
+						console.log function)</li>
 					<li>write unit tests for <code style="color:lightgreen">mapping.service.ts</code> </li>
 					<li>BONUS: write unit tests for <code style="color:lightgreen">controller.ts</code></li>
 				</ul>
