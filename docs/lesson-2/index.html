@@ -181,6 +181,15 @@ test('should fetch users', () => {
 				</div>
 			</section>
 			<section>
+				<h5>Manual Mocks</h5>
+				<p>Create a <code>__mocks__</code> folder adjacent to the module.</p>
+				<pre class="language-javascript"><code data-trim data-noescape>
+// src/__mocks__/file-manager.ts
+export const readFile = jest.fn();
+				</code></pre>
+				<p>Jest will automatically use this mock when you call <code>jest.mock('./file-manager')</code>.</p>
+			</section>
+			<section>
 				<h5>Mocking implementation from module</h5>
 				<pre class="language-javascript"><code data-trim data-noescape>
 // foo.ts
@@ -290,6 +299,7 @@ jest --watchAll # watch all files for changes
 jest --init # init new jest.config.js file (interactive)
 jest --verbose # log every test result individualy
 jest &ltfilename&gt # execute tests only on specific file
+jest -t &ltpattern&gt # run tests matching the pattern
 			</code></pre>
 			</section>
 			<section>

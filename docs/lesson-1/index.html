@@ -233,6 +233,28 @@
 				<p>Installing <a href="https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest">VS code addon</a></p>
 			</section>
 			<section>
+				<h4>Code Coverage</h4>
+				<pre>
+					<code class="language-sh" data-trim data-noescape>
+						npx jest --coverage
+					</code></pre>
+				<p>Generates a coverage report in <code>coverage/lcov-report/index.html</code></p>
+			</section>
+			<section>
+				<h4>Debugging</h4>
+				<ul>
+					<li>Add <code>debugger;</code> statement in your test or code</li>
+					<li>Run with Node.js debugger or use VS Code "Debug" lens</li>
+				</ul>
+				<pre><code class="language-javascript" data-trim>
+it('should debug this', () => {
+  const value = 10;
+  debugger; // Execution pauses here
+  expect(value).toBe(10);
+});
+				</code></pre>
+			</section>
+			<section>
 				<h4>Spec file structure</h4>
 				<pre><code class="language-javascript" data-trim>
 describe('test unit', () => {
@@ -549,10 +571,11 @@ it('should test for error', async ()=>{
 			<section>
 				<h4>Competition rules - Calculate winner</h4>
 				<ol>
-					<li>Minimum attempts to reach the top gives top place</li>
-					<li>If attempts till top are equal then the minimum number of zone attempts gives top place</li>
-					<li>If both top attempts and zone attempts are equal then minimum total attempts count gives top place</li>
-					<li>function should output top 3 places for competitors</li>
+					<li>Maximum number of tops gives top place</li>
+					<li>If tops are equal then maximum number of zones gives top place</li>
+					<li>If tops and zones are equal then minimum attempts to top gives top place</li>
+					<li>If tops, zones and top attempts are equal then minimum attempts to zone gives top place</li>
+					<li>function should output the ordered list of competitors</li>
 				</ol>
 			</section>
 			<section>
