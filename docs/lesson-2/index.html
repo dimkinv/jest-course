@@ -192,6 +192,20 @@ test('should fetch users', () => {
 				</div>
 			</section>
 			<section>
+				<h5>TypeScript Caveats</h5>
+				<p>Two ways of mocking functions with Typescript</p>
+				<pre class="language-typescript"><code data-trim data-noescape>
+import fs from 'fs/promises';
+
+// Direct cast when mocking inline
+(fs.readFile as jest.Mock).mockResolvedValue('data');
+
+// Better: keep a typed reference with the right type
+const readFileMock = fs.readFile as jest.Mock;
+readFileMock.mockRejectedValue(new Error('boom'));
+				</code></pre>
+			</section>			
+			<section>
 				<h5>Exercise: Mocking Modules</h5>
 			</section>
 			<section>
