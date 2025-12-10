@@ -76,18 +76,18 @@
 				<img src="../assets/real1.jpg" />
 			</section>
 			<section>
-				<h4>real of fake</h4>
+				<h4>Real or Fake?</h4>
 				<img height="500" src="../assets/real2.jpg" />
 			</section>
 			<section>
-				<h4>real of fake</h4>
+				<h4>Real or Fake?</h4>
 				<img height="500" src="../assets/fake2.jpg" />
 			</section>
 			<section>
 				<h4>Mocks</h4>
 				<div style="display:flex;justify-content: center">
 					Mock functions allow you to test a module in isolation by erasing the actual implementation of a
-					functions from another module
+					function from another module
 			</section>
 			<section>
 				<h4>Mocks in jest</h4>
@@ -136,6 +136,17 @@ mockFunction.mockReset();
 			  .mockRejectedValueOnce('error'); // Rejects with 'error'
 				</code></pre>
 			</section>
+			<section>
+				<h5>Exercise: Simple Mocks</h5>
+			</section>
+			<section>
+				<h5>Simple Mocks</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/simple-mocks/order-reader.spec.ts</code></li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">OrderReader</code> with a mocked <code
+							style="color:lightgreen">FileManager</code></li>
+				</ul>
+			</section>
 			<!-- <section>
 				<h5>Mocking Modules with jest.mock()</h5>
 				<p>Jest allows you to mock entire modules for isolated testing:</p>
@@ -159,7 +170,7 @@ mockFunction.mockReset();
 				</code></pre>
 			</section> -->
 			<section>
-				<h5>Mocking modules</h5>
+				<h5>Mocking Modules</h5>
 				<pre class="language-javascript"><code data-trim data-noescape>
 import axios from 'axios';
 jest.mock('axios');
@@ -181,6 +192,18 @@ test('should fetch users', () => {
 				</div>
 			</section>
 			<section>
+				<h5>Exercise: Mocking Modules</h5>
+			</section>
+			<section>
+				<h5>Mocking Modules</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/mocking-modules/file-manager.spec.ts</code>
+					</li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">FileManager</code> by mocking <code
+							style="color:lightgreen">fs/promises</code></li>
+				</ul>
+			</section>
+			<section>
 				<h5>Manual Mocks</h5>
 				<p>Create a <code>__mocks__</code> folder adjacent to the module.</p>
 				<pre class="language-javascript"><code data-trim data-noescape>
@@ -198,7 +221,7 @@ export default function () {
 };
 
 // test.ts
-jest.mock('../foo'); 
+jest.mock('./foo'); 
 import foo from './foo'; // potential linter error
 
 // foo is a mock function
@@ -222,7 +245,41 @@ test("calls math.add", () => {
   expect(addMock).toHaveBeenCalledWith(1, 2);
 });
 				</code></pre>
-				Mocks the function but leaves the implementation
+				Wraps the function to track calls, but leaves the original implementation intact
+			</section>
+			<section>
+				<h5>Exercise: Spies</h5>
+			</section>
+			<section>
+				<h5>Spies</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/spies/calculator.spec.ts</code></li>
+					<li>Complete the TODOs to test <code style="color:lightgreen">Calculator</code> using spies on <code
+							style="color:lightgreen">console.log</code></li>
+				</ul>
+			</section>
+			<section>
+				<h5>Clearing Mocks 🧹</h5>
+				<p>It's important to reset mock state between tests.</p>
+				<table style="font-size: 0.6em">
+					<tr>
+						<td><code style="color: yellow">mockFn.mockClear()</code></td>
+						<td>Clears stored info (calls, instances).</td>
+					</tr>
+					<tr>
+						<td><code style="color: orange">mockFn.mockReset()</code></td>
+						<td>Clears stored info AND implementation/return values.</td>
+					</tr>
+					<tr>
+						<td><code style="color: red">mockFn.mockRestore()</code></td>
+						<td>Restores original implementation (only for spies created with <code>spyOn</code>).</td>
+					</tr>
+				</table>
+				<pre class="language-javascript"><code data-trim data-noescape>
+afterEach(() => {
+  jest.clearAllMocks();
+});
+				</code></pre>
 			</section>
 			<section>
 				<h5>Snapshot Testing 📸</h5>
@@ -261,8 +318,21 @@ test('testing timer with setTimeout', () => {
 				</code></pre>
 			</section>
 			<section>
+				<h5>Exercise: Mocking Timers</h5>
+				<img src="../assets/meteor.jpeg" />
+			</section>
+			<section>
+				<h5>Mocking Timers</h5>
+				<ul>
+					<li>Open <code style="color:lightgreen">src/lesson-2/timers/timer-task.spec.ts</code></li>
+					<li>Write a test for <code style="color:lightgreen">executeTaskAfterDelay</code> using fake timers
+					</li>
+				</ul>
+			</section>
+			<section>
 				<h5>Parameterized Tests with <code data-trim data-noescape>test.each()</code> 📋</h5>
-				<p>Jest allows you to run the same test with multiple sets of data using <code data-trim data-noescape>test.each()</code>.</p>
+				<p>Jest allows you to run the same test with multiple sets of data using <code data-trim
+						data-noescape>test.each()</code>.</p>
 				<pre class="language-javascript"><code data-trim data-noescape>
 test.each([
   [1, 1, 2],
@@ -292,27 +362,56 @@ test.each([
 				</ul>
 			</section>
 			<section>
-			<h5>jest cli 🚀</h5>
-			<pre class="language-bash"><code data-trim data-noescape>
+				<h5>Custom Matchers 🛠️</h5>
+				<p>Extend Jest with your own assertions.</p>
+				<pre class="language-javascript"><code data-trim data-noescape>
+expect.extend({
+  toBeWithinRange(received, floor, ceiling) {
+    const pass = received >= floor && received <= ceiling;
+    if (pass) {
+      return {
+        message: () => `expected ${received} not to be within range ${floor} - ${ceiling}`,
+        pass: true,
+      };
+    } else {
+      return {
+        message: () => `expected ${received} to be within range ${floor} - ${ceiling}`,
+        pass: false,
+      };
+    }
+  },
+});
+
+test('numeric ranges', () => {
+  expect(100).toBeWithinRange(90, 110);
+});
+				</code></pre>
+			</section>
+			<section>
+				<h5>Jest CLI 🚀</h5>
+				<pre class="language-bash"><code data-trim data-noescape>
 jest --watch # watch all files since last git change (requires git repo initialized on root path)
 jest --watchAll # watch all files for changes
 jest --init # init new jest.config.js file (interactive)
-jest --verbose # log every test result individualy
+jest --verbose # log every test result individually
 jest &ltfilename&gt # execute tests only on specific file
 jest -t &ltpattern&gt # run tests matching the pattern
 			</code></pre>
 			</section>
 			<section>
 				<h5>Exercise</h5>
-				<img src="../assets/meteor.jpeg"/>
+				<img src="../assets/meteor.jpeg" />
 			</section>
 			<section>
 				<h5>☄️ lets look up ☄️</h5>
 				<ul>
 					<li>start the application with <code style="color:lightgreen">npm start</code> command</li>
-					<li>goto: <a href="http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11">http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11</a></li>
-					<li>observe if earth in not in immediate danger 😱</li>
-					<li>write unit tests for <code style="color:lightgreen">asteroid.service.ts</code> file (add spy for console.log function)</li>
+					<li>goto: <a
+							href="http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11">http://localhost:3000/asteroids?startDate=2020-10-11&endDate=2020-10-11</a>
+					</li>
+					<li>observe if earth is not in immediate danger 😱</li>
+					<li>write unit tests for <code style="color:lightgreen">asteroid.service.ts</code> file (add spy for
+						console.log function)</li>
 					<li>write unit tests for <code style="color:lightgreen">mapping.service.ts</code> </li>
 					<li>BONUS: write unit tests for <code style="color:lightgreen">controller.ts</code></li>
 				</ul>
